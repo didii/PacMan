@@ -77,7 +77,9 @@ class SyncTimer {
     #endregion
 
     #region Events
-
+    /// <summary>
+    /// The event raised every <see cref="IntervalTime"/> seconds.
+    /// </summary>
     public event System.Action Elapsed;
     #endregion
 

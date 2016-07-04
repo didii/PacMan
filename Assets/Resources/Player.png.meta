@@ -1,0 +1,273 @@
+fileFormatVersion: 2
+guid: ffd4329caa87ad44ab188897d2521a30
+timeCreated: 1464121707
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PlayerUp_0
+    21300002: PlayerUp_1
+    21300004: PlayerUp_2
+    21300006: PlayerRight_2
+    21300008: PlayerRight_1
+    21300010: PlayerRight_0
+    21300012: PlayerDown_0
+    21300014: PlayerDown_1
+    21300016: PlayerDown_2
+    21300018: PlayerLeft_0
+    21300020: PlayerLeft_1
+    21300022: PlayerLeft_2
+    21300024: Player_0
+    21300026: Player_1
+    21300028: Player_2
+    21300030: Player_3
+    21300032: Player_4
+    21300034: Player_5
+    21300036: Player_6
+    21300038: Player_7
+    21300040: Player_8
+    21300042: Player_9
+    21300044: Player_10
+    21300046: Player_11
+    21300048: Player_12
+    21300050: Player_13
+    21300052: Player_14
+    21300054: Player_15
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Player_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 132
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 32}
+        - {x: -32, y: -27}
+        - {x: -21, y: -32}
+        - {x: 28, y: -32}
+        - {x: 32, y: -23}
+        - {x: 32, y: 26}
+        - {x: 20, y: 32}
+    - name: Player_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 132
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 32}
+        - {x: -32, y: 18}
+        - {x: -32, y: -27}
+        - {x: -21, y: -32}
+        - {x: 24, y: -32}
+        - {x: 32, y: -15}
+        - {x: 32, y: 30}
+        - {x: 31, y: 32}
+    - name: Player_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 132
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 32}
+        - {x: -32, y: 27}
+        - {x: -32, y: -32}
+        - {x: 28, y: -32}
+        - {x: 28, y: 32}
+    - name: Player_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 132
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: 32}
+        - {x: -29, y: 32}
+        - {x: -32, y: 26}
+        - {x: -32, y: -17}
+        - {x: -27, y: -32}
+        - {x: 16, y: -32}
+        - {x: 23, y: -25}
+        - {x: 22, y: -22}
+        - {x: 23, y: -10}
+    - name: Player_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 68
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: -5}
+        - {x: -32, y: -14}
+        - {x: -21, y: -31}
+        - {x: -21, y: -32}
+        - {x: 18, y: -32}
+        - {x: 32, y: -25}
+        - {x: 32, y: -6}
+        - {x: 30, y: -5}
+      - - {x: -15, y: 32}
+        - {x: -32, y: 21}
+        - {x: -32, y: 3}
+        - {x: 32, y: 3}
+        - {x: 32, y: 12}
+        - {x: 30, y: 20}
+        - {x: 20, y: 30}
+        - {x: 13, y: 32}
+    - name: Player_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 68
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30, y: -10}
+        - {x: -30, y: -21}
+        - {x: -14, y: -32}
+        - {x: 13, y: -32}
+        - {x: 30, y: -21}
+        - {x: 30, y: -10}
+      - - {x: -24, y: 32}
+        - {x: -30, y: 18}
+        - {x: -30, y: 10}
+        - {x: 30, y: 10}
+        - {x: 30, y: 31}
+        - {x: 26, y: 32}
+    - name: Player_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 68
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: -17}
+        - {x: -26, y: -20}
+        - {x: -20, y: -30}
+        - {x: -12, y: -32}
+        - {x: 15, y: -32}
+        - {x: 25, y: -24}
+        - {x: 25, y: -19}
+        - {x: 22, y: -17}
+      - - {x: 13, y: 32}
+        - {x: -14, y: 32}
+        - {x: -26, y: 23}
+        - {x: -26, y: 18}
+        - {x: -24, y: 17}
+        - {x: 24, y: 17}
+        - {x: 26, y: 18}
+        - {x: 26, y: 21}
+        - {x: 20, y: 30}
+    - name: Player_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 68
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: -22}
+        - {x: -21, y: -25}
+        - {x: -21, y: -32}
+        - {x: 18, y: -32}
+        - {x: 21, y: -27}
+        - {x: 21, y: -24}
+        - {x: 20, y: -22}
+      - - {x: 17, y: 32}
+        - {x: -13, y: 32}
+        - {x: -21, y: 26}
+        - {x: -21, y: 24}
+        - {x: -20, y: 22}
+        - {x: 20, y: 22}
+        - {x: 21, y: 24}
+        - {x: 21, y: 31}
+    - name: Player_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

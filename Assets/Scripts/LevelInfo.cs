@@ -44,7 +44,7 @@ public class LevelInfo : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        DrawNodeConnections();
+        
     }
 
 

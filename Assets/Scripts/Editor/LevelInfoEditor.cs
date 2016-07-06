@@ -40,7 +40,7 @@ public class LevelInfoEditor : Editor {
         var parent = new GameObject("DotLine");
         parent.tag = "DotLine";
         foreach (var line in _self.NodeConnections) {
-            var obj = Instantiate(_self.DotLinePrefab, line.Center, Quaternion.identity) as GameObject;
+            var obj = /*PrefabUtility.*/Instantiate/*Prefab*/(_self.DotLinePrefab) as GameObject;
             if (obj == null) {
                 Debug.LogError("Could not assign properties to instantiated " + _self.DotLinePrefab.name);
                 continue;
@@ -48,17 +48,18 @@ public class LevelInfoEditor : Editor {
 
             var bounds = obj.GetComponent<MeshRenderer>().bounds;
             var trans = obj.transform;
+            trans.position = line.Center;
             trans.SetParent(parent.transform, true);
             var dir = line.ToDirection2();
             Vector3 scale = Vector3.one;
             switch (dir) {
             case Utility.EDirection2.Horizontal:
-                scale.x = (line.Start.x - bounds.center.x) / bounds.extents.x;
+                scale.x = (line.End.x - line.Center.x) / bounds.extents.x;
                 scale.y = 0.25f;
                 break;
             case Utility.EDirection2.Vertical:
                 scale.x = 0.25f;
-                scale.y = (line.Start.y - bounds.center.y) / bounds.extents.y;
+                scale.y = (line.End.y - line.Center.y) / bounds.extents.y;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -71,6 +72,7 @@ public class LevelInfoEditor : Editor {
     /// Adds dots onto the dotlines
     /// </summary>
     public void AddDots() {
+        throw new NotImplementedException();
         var dotLines = GameObject.FindGameObjectsWithTag("DotLine");
         foreach (var line in dotLines) {
             

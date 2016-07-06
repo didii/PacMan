@@ -14,6 +14,15 @@ public static class Utility {
 
     #region Enums
     /// <summary>
+    /// An enum defining the 2 orthogonal lines including None.
+    /// </summary>
+    public enum EDirection2 {
+        None,
+        Horizontal,
+        Vertical
+    }
+
+    /// <summary>
     /// An enum defining the 4 orthogonal directions in 2D space including None
     /// </summary>
     public enum EDirection4 {
@@ -63,14 +72,48 @@ public static class Utility {
 
     #region EDirection extensions
     /// <summary>
-    /// Converts a <see cref="EDirection4"/> to <see cref="EDirection8"/>
+    /// Converts a <see cref="EDirection4"/> to a <see cref="EDirection2"/>.
     /// </summary>
     /// <param name="dir4"></param>
     /// <returns></returns>
-    public static EDirection8 To8(this EDirection4 dir4) {
-        if (dir4 == EDirection4.None)
-            return EDirection8.None;
-        return (EDirection8)((int)dir4 * 2 - 1);
+    public static EDirection2 To2(this EDirection4 dir4) {
+        switch (dir4) {
+        case EDirection4.None:
+            return EDirection2.None;
+        case EDirection4.Up:
+        case EDirection4.Down:
+            return EDirection2.Vertical;
+        case EDirection4.Right:
+        case EDirection4.Left:
+            return EDirection2.Horizontal;
+        default:
+            throw new ArgumentOutOfRangeException("dir4", dir4, null);
+        }
+    }
+
+    /// <summary>
+    /// Converts a <see cref="EDirection8"/> to a <see cref="EDirection2"/>.
+    /// </summary>
+    /// <param name="dir8"></param>
+    /// <returns></returns>
+    public static EDirection2 To2(this EDirection8 dir8) {
+        switch (dir8) {
+        case EDirection8.None:
+            return EDirection2.None;
+        case EDirection8.Up:
+        case EDirection8.Down:
+            return EDirection2.Vertical;
+        case EDirection8.Right:
+        case EDirection8.Left:
+            return EDirection2.Horizontal;
+        case EDirection8.DownRight:
+        case EDirection8.DownLeft:
+        case EDirection8.UpLeft:
+        case EDirection8.UpRight:
+            throw new InvalidEnumArgumentException("Direction cannot be diagonal");
+        default:
+            throw new ArgumentOutOfRangeException("dir8", dir8, null);
+        }
     }
 
     /// <summary>
@@ -83,8 +126,20 @@ public static class Utility {
             return EDirection4.None;
         if (((int)dir8).IsEven())
             throw new InvalidEnumArgumentException("dir8", (int)dir8, dir8.GetType());
-        return (EDirection4)(((int)dir8 + 1) / 2);
+        return (EDirection4)(((int)dir8 + 1)/2);
     }
+
+    /// <summary>
+    /// Converts a <see cref="EDirection4"/> to <see cref="EDirection8"/>
+    /// </summary>
+    /// <param name="dir4"></param>
+    /// <returns></returns>
+    public static EDirection8 To8(this EDirection4 dir4) {
+        if (dir4 == EDirection4.None)
+            return EDirection8.None;
+        return (EDirection8)((int)dir4*2 - 1);
+    }
+
 
     /// <summary>
     /// Check to see if both <see cref="EDirection4"/> are opposite to each other
@@ -114,7 +169,7 @@ public static class Utility {
     public static EDirection4 Opposite(this EDirection4 dir) {
         if (dir == EDirection4.None)
             return EDirection4.None;
-        return (EDirection4)(((int)dir + 1) % 4 + 1);
+        return (EDirection4)(((int)dir + 1)%4 + 1);
     }
 
     /// <summary>
@@ -125,7 +180,7 @@ public static class Utility {
     public static EDirection8 Opposite(this EDirection8 dir) {
         if (dir == EDirection8.None)
             return EDirection8.None;
-        return (EDirection8)(((int)dir + 3) % (dir.Count() - 1) + 1);
+        return (EDirection8)(((int)dir + 3)%(dir.Count() - 1) + 1);
     }
 
     /// <summary>
@@ -214,6 +269,7 @@ public static class Utility {
     #endregion
 
     #region Float utilities
+
     /// <summary>
     /// Default tolerance value used for floating point number for comparing
     /// </summary>
@@ -286,6 +342,7 @@ public static class Utility {
     #endregion
 
     #region Float extensions
+
     /// <summary>
     /// Converts a radian value to degrees
     /// </summary>
@@ -298,6 +355,7 @@ public static class Utility {
     public static float ToRadian(this float val) {
         return (float)(val*Math.PI/180);
     }
+
     #endregion
 
     #region Double extensions
@@ -309,6 +367,7 @@ public static class Utility {
     public static double ToRadian(this double val) {
         return val*Math.PI/180;
     }
+
     #endregion
 
     #region object extensions
@@ -341,9 +400,8 @@ public static class Utility {
     }
 
     public static Vector2 Multiply(this Vector2 lhs, Vector2 rhs) {
-        return new Vector2(lhs.x * rhs.x, lhs.y * rhs.y);
+        return new Vector2(lhs.x*rhs.x, lhs.y*rhs.y);
     }
-
 
     #endregion
 
@@ -360,6 +418,7 @@ public static class Utility {
     #endregion
 
     #region Vector3 extensions
+
     /// <summary>
     /// Divides all corresponding elements. 
     /// </summary>
@@ -376,7 +435,7 @@ public static class Utility {
     /// <param name="vec"></param>
     /// <returns></returns>
     public static float Theta(this Vector3 vec) {
-        return (float)Math.Atan2(vec.y,vec.x);
+        return (float)Math.Atan2(vec.y, vec.x);
     }
 
     public static float Phi(this Vector3 vec) {
@@ -392,6 +451,7 @@ public static class Utility {
     public static Vector3 Multiply(this Vector3 lhs, Vector3 rhs) {
         return new Vector3(lhs.x*rhs.x, lhs.y*rhs.y, lhs.z*rhs.z);
     }
+
     #endregion
 
     #region TimeSpan extensions
@@ -494,6 +554,7 @@ public static class Utility {
     #endregion
 
     #region ICollection extensions
+
     /// <summary>
     /// Remove the first element of the collection
     /// </summary>
@@ -559,5 +620,6 @@ public static class Utility {
     public static T GetRandom<T>(this ICollection<T> list) {
         return list.ElementAt(Random.Range(0, list.Count));
     }
+
     #endregion
 }

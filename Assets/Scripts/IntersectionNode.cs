@@ -9,6 +9,8 @@ public class IntersectionNode : MonoBehaviour {
     #region Fields
     
     public bool AllowUp, AllowRight, AllowDown, AllowLeft;
+    public bool DotsUp, DotsRight, DotsDown, DotsLeft;
+
 
     [Header("Editor")]
     public Rect MaxSearchRect;
@@ -89,7 +91,7 @@ public class IntersectionNode : MonoBehaviour {
                 }
             }
 
-            // Seach vertical
+            // Search vertical
             if (!processedNodesVertical.Contains(node)) {
                 var vHits = Physics2D.CircleCastAll(new Vector2(node.transform.position.x, MaxSearchRect.yMin),
                                                     SearchWidth,
@@ -138,6 +140,11 @@ public class IntersectionNode : MonoBehaviour {
             }
         }
     }
+
+    public void AddAllowedMoveDecals() {
+        
+    }
+    
     #endregion
 
     #region Events

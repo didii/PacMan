@@ -71,6 +71,20 @@ public class LineSegment2D {
     }
 
     /// <summary>
+    /// Returns the angle between the X-axis and the line. Always in [0,2pi[.
+    /// </summary>
+    public float Angle {
+        get { return Mathf.Atan2(End.y - Start.y, End.x - Start.x); }
+    }
+
+    /// <summary>
+    /// Returns the angle between the X-axis and the line. Always in [0,pi[.
+    /// </summary>
+    public float AngleTop {
+        get { return ((Line2D)this).Angle; }
+    }
+
+    /// <summary>
     /// Returns the center point of the line segment.
     /// </summary>
     public Vector2 Center {

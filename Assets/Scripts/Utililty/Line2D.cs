@@ -77,6 +77,13 @@ public class Line2D {
     /// If <see cref="IsVertical"/> gets the line's X-intercept.
     /// </summary>
     public float Intercept { get { return b; } }
+
+    /// <summary>
+    /// Returns the angle between the X-axis and the line. Always in [0,pi[.
+    /// </summary>
+    public float Angle {
+        get { return Mathf.Atan(k); }
+    }
     #endregion
 
     #region Factories

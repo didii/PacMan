@@ -2,11 +2,11 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(HereIsAButton))]
-class HereIsAButtonEditor : Editor {
+[CustomEditor(typeof(Test))]
+class TestEditor : Editor {
     public override void OnInspectorGUI() {
         DrawDefaultInspector();
-        var obj = (HereIsAButton)target;
+        var obj = (Test)target;
         if (GUILayout.Button("Do"))
             obj.Do();
     }

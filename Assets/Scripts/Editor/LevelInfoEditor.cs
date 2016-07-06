@@ -6,7 +6,8 @@ using UnityEngine;
 public class LevelInfoEditor : Editor {
     #region Fields
 
-    public GameObject Tst;
+    private LevelInfo _self;
+    private float _dotSpacing = 5;
     #endregion
 
     #region Events
@@ -14,10 +15,67 @@ public class LevelInfoEditor : Editor {
     public override void OnInspectorGUI() {
         this.DrawDefaultInspector();
 
-        var info = (LevelInfo)target;
         if (GUILayout.Button("Insert DotLines")) {
-            info.AddDotLines();
+            _self = (LevelInfo)target;
+            AddDotLines();
+        }
+        if (GUILayout.Button("Place Dots")) {
+            _self = (LevelInfo)target;
+            AddDotLines();
         }
     }
+
+    /// <summary>
+    /// Adds DotLines onto the scene based on the location of the nodes
+    /// </summary>
+    public void AddDotLines() {
+        _self.Start();
+        // Removing previously placed dotlines
+        foreach (var gameObject in GameObject.FindGameObjectsWithTag("DotLine")) {
+            DestroyImmediate(gameObject);
+        }
+
+        // Place all possible dotlines
+        Debug.Log("Placing DotLines");
+        var parent = new GameObject("DotLine");
+        parent.tag = "DotLine";
+        foreach (var line in _self.NodeConnections) {
+            var obj = Instantiate(_self.DotLinePrefab, line.Center, Quaternion.identity) as GameObject;
+            if (obj == null) {
+                Debug.LogError("Could not assign properties to instantiated " + _self.DotLinePrefab.name);
+                continue;
+            }
+
+            var bounds = obj.GetComponent<MeshRenderer>().bounds;
+            var trans = obj.transform;
+            trans.SetParent(parent.transform, true);
+            var dir = line.ToDirection2();
+            Vector3 scale = Vector3.one;
+            switch (dir) {
+            case Utility.EDirection2.Horizontal:
+                scale.x = (line.Start.x - bounds.center.x) / bounds.extents.x;
+                scale.y = 0.25f;
+                break;
+            case Utility.EDirection2.Vertical:
+                scale.x = 0.25f;
+                scale.y = (line.Start.y - bounds.center.y) / bounds.extents.y;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+            }
+            trans.localScale = scale;
+        }
+    }
+
+    /// <summary>
+    /// Adds dots onto the dotlines
+    /// </summary>
+    public void AddDots() {
+        var dotLines = GameObject.FindGameObjectsWithTag("DotLine");
+        foreach (var line in dotLines) {
+            
+        }
+    }
+
     #endregion
 }

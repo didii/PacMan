@@ -7,12 +7,10 @@ using System.Linq;
 public class IntersectionNode : MonoBehaviour {
 
     #region Fields
+    
+    public bool AllowUp, AllowRight, AllowDown, AllowLeft;
+    public bool DotsUp, DotsRight, DotsDown, DotsLeft;
 
-    [Header("Movement")]
-    public bool AllowUp;
-    public bool AllowRight;
-    public bool AllowDown;
-    public bool AllowLeft;
 
     [Header("Editor")]
     public Rect MaxSearchRect;
@@ -75,7 +73,6 @@ public class IntersectionNode : MonoBehaviour {
     /// Makes sure all nodes are aligned horizontal and vertical
     /// </summary>
     public void ArrangeNodes() {
-        // Arrange the nodes
         var nodes = GameObject.FindGameObjectsWithTag("Node");
         var processedNodesHorizontal = new List<GameObject>(nodes.Length);
         var processedNodesVertical = new List<GameObject>(nodes.Length);
@@ -108,14 +105,6 @@ public class IntersectionNode : MonoBehaviour {
                 }
             }
         }
-    }
-
-    /// <summary>
-    /// Adds the small orange triangle indicating allowed movement in that direction
-    /// </summary>
-    public void AddAllowedMoveDecals() {
-        // Get all nodes
-        var nodes = GameObject.FindGameObjectsWithTag("Node");
         // Remove existing directional sprites
         foreach (var node in nodes) {
             foreach (var child in node.transform.GetChildren()) {
@@ -131,34 +120,31 @@ public class IntersectionNode : MonoBehaviour {
                 obj.transform.SetParent(node.transform, false);
                 obj.layer = LayerMask.NameToLayer("Node");
                 switch (dir) {
-                case Utility.EDirection4.None:
-                    break;
-                case Utility.EDirection4.Up:
-                    obj.GetComponent<SpriteRenderer>().sprite = UpSprite;
-                    break;
-                case Utility.EDirection4.Right:
-                    obj.GetComponent<SpriteRenderer>().sprite = RightSprite;
-                    break;
-                case Utility.EDirection4.Down:
-                    obj.GetComponent<SpriteRenderer>().sprite = DownSprite;
-                    break;
-                case Utility.EDirection4.Left:
-                    obj.GetComponent<SpriteRenderer>().sprite = LeftSprite;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                    case Utility.EDirection4.None:
+                        break;
+                    case Utility.EDirection4.Up:
+                        obj.GetComponent<SpriteRenderer>().sprite = UpSprite;
+                        break;
+                    case Utility.EDirection4.Right:
+                        obj.GetComponent<SpriteRenderer>().sprite = RightSprite;
+                        break;
+                    case Utility.EDirection4.Down:
+                        obj.GetComponent<SpriteRenderer>().sprite = DownSprite;
+                        break;
+                    case Utility.EDirection4.Left:
+                        obj.GetComponent<SpriteRenderer>().sprite = LeftSprite;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
-
     }
 
-    /// <summary>
-    /// Adds the small green triangle indicating dots will appear from this node
-    /// </summary>
-    public void AddAllowedDotsDecals() {
+    public void AddAllowedMoveDecals() {
         
     }
+    
     #endregion
 
     #region Events

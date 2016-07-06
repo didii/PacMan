@@ -14,6 +14,8 @@ public class LevelInfo : MonoBehaviour {
     private Bounds _levelSize;
     private HashSet<GameObject> _nodes;
     private HashSet<LineSegment2D> _nodeConnections;
+
+    [Header("Editor")] public GameObject DotLinePrefab;
     #endregion
 
     #region Properties

@@ -79,7 +79,6 @@ public class Fruit : MonoBehaviour {
             return;
         _isFlickering = true;
         _flickerTimer.Start();
-        Debug.Log("Flicker start");
     }
 
     private void Disappear() {
@@ -87,7 +86,6 @@ public class Fruit : MonoBehaviour {
             return;
         _isDestroyed = true;
         Destroy(gameObject);
-        Debug.Log("Destroy initiated");
     }
     #endregion
 

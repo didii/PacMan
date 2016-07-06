@@ -69,6 +69,13 @@ public class LineSegment2D {
     public Vector2 Direction {
         get { return (_end - _start).normalized; }
     }
+
+    /// <summary>
+    /// Returns the center point of the line segment.
+    /// </summary>
+    public Vector2 Center {
+        get { return (Start + End)/2; }
+    }
     #endregion
 
     #region Constructor

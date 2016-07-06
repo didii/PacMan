@@ -12,6 +12,8 @@ public class LevelInfo : MonoBehaviour {
     private Bounds _levelSize;
     private HashSet<GameObject> _nodes;
     private HashSet<LineSegment2D> _nodeConnections;
+
+    [Header("Editor")] public GameObject DotLinePrefab;
     #endregion
 
     #region Properties
@@ -117,6 +119,31 @@ public class LevelInfo : MonoBehaviour {
     private void DrawNodeConnections() {
         foreach (var line in _nodeConnections)
             line.Draw();
+    }
+
+    #endregion
+
+    #region Editor methods
+    /// <summary>
+    /// Adds 
+    /// </summary>
+    public void AddDotLines() {
+        Debug.Log("Getting node connections");
+        if (_nodeConnections == null)
+            GetNodeConnections();
+
+        Debug.Log("Placing DotLines");
+        foreach (var line in _nodeConnections) {
+            var obj = Instantiate(DotLinePrefab, line.Center, Quaternion.LookRotation(line.Direction)) as GameObject;
+            if (obj == null) {
+                Debug.LogError("Could not assign properties to instantiated " + DotLinePrefab.name);
+                continue;
+            }
+
+            var mesh = obj.GetComponent<MeshRenderer>();
+            var trans = obj.transform;
+
+        }
     }
 
     #endregion

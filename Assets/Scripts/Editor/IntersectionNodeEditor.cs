@@ -13,7 +13,10 @@ public class IntersectionNodeEditor : Editor {
 
     public override void OnInspectorGUI() {
         DrawDefaultInspector();
-        if (GUILayout.Button("Arrange"))
-            ((IntersectionNode)target).ArrangeNodes();
+        var node = (IntersectionNode)target;
+        if (GUILayout.Button("Arrange")) {
+            node.ArrangeNodes();
+            node.AddAllowedMoveDecals();
+        }
     }
 }

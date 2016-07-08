@@ -32,6 +32,7 @@ using UnityEngine;
 /// </code>
 /// </remarks>
 /// 
+[Serializable]
 public class LineSegment2D {
     #region Fields
     // segment's start/end point

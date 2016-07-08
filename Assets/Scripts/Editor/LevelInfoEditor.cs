@@ -40,7 +40,7 @@ public class LevelInfoEditor : Editor {
         var parent = new GameObject("DotLine");
         parent.tag = "DotLine";
         foreach (var line in _self.NodeConnections) {
-            var obj = /*PrefabUtility.*/Instantiate/*Prefab*/(_self.DotLinePrefab) as GameObject;
+            var obj = PrefabUtility.InstantiatePrefab(_self.DotLinePrefab) as GameObject;
             if (obj == null) {
                 Debug.LogError("Could not assign properties to instantiated " + _self.DotLinePrefab.name);
                 continue;
@@ -69,13 +69,16 @@ public class LevelInfoEditor : Editor {
     }
 
     /// <summary>
-    /// Adds dots onto the dotlines
+    /// Adds dots onto the dotlines, ensuring there is always a dot on a node.
     /// </summary>
     public void AddDots() {
-        throw new NotImplementedException();
+        // Iterate over all existing DotLines
         var dotLines = GameObject.FindGameObjectsWithTag("DotLine");
-        foreach (var line in dotLines) {
-            
+        foreach (var dotLine in dotLines) {
+            // Convert to line segment
+            var line = dotLine.GetComponent<MeshRenderer>().bounds;
+            // First find every node on it
+            //Physics2D.RaycastAll()
         }
     }
 

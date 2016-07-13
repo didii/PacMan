@@ -65,6 +65,7 @@ public class LevelInfoEditor : Editor {
                 throw new ArgumentOutOfRangeException();
             }
             trans.localScale = scale;
+            obj.GetComponent<DotLine>().Line = new LineSegment2D(line);
         }
     }
 

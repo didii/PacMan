@@ -1,13 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Allows for a LateFixedUpdate call on every Monobehavior which technically doesn't exist.
+/// </summary>
+/// <remarks>
+/// <para>It triggers a collision every physics frame which for Unity is handled after the physics
+/// update. Source: http://docs.unity3d.com/Manual/ExecutionOrder.html </para>
+/// 
+/// <para>Usage:</para>
+/// 
+/// <para>Add an object with this script attached to the scene. I usually add it to the
+/// GameController. This will now broadcast a message to all GameObjects in the scene, triggering
+/// the function LateFixedUpdate(). Simply implement this function on any MonoBehaviour to trigger
+/// it.</para>
+/// 
+/// It does not seem to matter if you add multiple for some reason...</remarks>
 public class LateFixedUpdateHack : MonoBehaviour {
 
-    public static event System.Action Event;
-    private bool _fixedUpdate;
+    private static bool _fixedUpdate;
 
     void Start() {
-        // Create a couple of colliders to trigger OnTriggerStay each fixed update frame after the physics run
+        // Create a couple of colliders to trigger OnTriggerStay each fixed update frame after the
+        // physics run
         gameObject.AddComponent<BoxCollider>().isTrigger = true;
 
         var other = new GameObject();
@@ -27,6 +42,11 @@ public class LateFixedUpdateHack : MonoBehaviour {
         if (!_fixedUpdate)
             return;
         _fixedUpdate = false;
-        if (Event != null) Event.Invoke();
+
+        // Get all GameObjects
+        var allObj = FindObjectsOfType<GameObject>();
+        foreach (var obj in allObj)
+            // Call LateFixedUpdate on all of them
+            obj.SendMessage("LateFixedUpdate", SendMessageOptions.DontRequireReceiver);
     }
 }

@@ -2,11 +2,17 @@
 using System.Linq;
 using UnityEngine;
 
-public class NodeMovement : MonoBehaviour {
+/// <summary>
+/// Queue a single movement with some extra functionality.
+/// </summary>
+public class MoveQueue : MonoBehaviour {
 
     #region Fields
     
     public float Speed;
+    /// <summary>
+    /// If set to true, the opposite direction is not blocked.
+    /// </summary>
     public bool AllowReverse = true;
 
     public event Action<Utility.EDirection4> DirectionChanged;
@@ -115,24 +121,19 @@ public class NodeMovement : MonoBehaviour {
 
     #endregion
 
-    #region Runtime Methods
-
-    // Update is called once per frame
-    void Update() {}
-
-    #endregion
-
     #region Events
 
     #endregion
 
     #region Methods
 
+    public void Go(Func<Utility.EDirection4, bool> condition) {
+        if (condition(NextDirection))
+            CurrentDirection = NextDirection;
+    }
+
     public void Wait() {
-        if (AllowReverse)
-            _allowedDirections = new Utility.EDirection4[2];
-        else
-            _allowedDirections = new Utility.EDirection4[1];
+        _allowedDirections = AllowReverse ? new Utility.EDirection4[2] : new Utility.EDirection4[1];
         _allowedDirections[0] = CurrentDirection;
         if (AllowReverse)
             _allowedDirections[1] = CurrentDirection.Opposite();
@@ -149,7 +150,4 @@ public class NodeMovement : MonoBehaviour {
     }
     #endregion
 
-    #region Helper Methods
-
-    #endregion
 }

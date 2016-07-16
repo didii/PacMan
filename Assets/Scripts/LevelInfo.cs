@@ -15,7 +15,9 @@ public class LevelInfo : MonoBehaviour {
     private HashSet<GameObject> _nodes;
     private HashSet<LineSegment2D> _nodeConnections;
 
-    [Header("Editor")] public GameObject DotLinePrefab;
+    [Header("Editor")]
+    public SpriteRenderer LevelRenderer;
+    public GameObject DotLinePrefab;
     public GameObject DotPrefab;
     public float DotSpacing = 0.6f;
 
@@ -38,7 +40,7 @@ public class LevelInfo : MonoBehaviour {
 
     // Use this for initialization
     public void Start() {
-        _levelSize = GetComponent<SpriteRenderer>().bounds;
+        _levelSize = LevelRenderer.bounds;
 
         // Get all intersection nodes
         _nodes = new HashSet<GameObject>(transform.GetAllChildren(child => child.tag == "Node")

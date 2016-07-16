@@ -4,7 +4,7 @@ using UnityEngine;
 public static class LineSegment2DExtensions {
 
     /// <summary>
-    /// Says is the line is more horizontal or more vertical.
+    /// Says if the line is more horizontal or more vertical.
     /// </summary>
     /// <param name="self"></param>
     /// <returns></returns>

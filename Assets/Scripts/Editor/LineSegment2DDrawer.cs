@@ -17,7 +17,7 @@ public class LineSegment2DDrawer : PropertyDrawer {
         Rect endRect = new Rect(position.x + position.width/2, position.y, position.width/2, position.height);
 
         // Draw fields - passs GUIContent.none to each so they are drawn without labels
-        //TODO: properties do not work
+        //TODO: properties do not work, private fields do not work
         EditorGUI.PropertyField(startRect, property.FindPropertyRelative("_start"), GUIContent.none);
         EditorGUI.PropertyField(endRect, property.FindPropertyRelative("_end"), GUIContent.none);
 

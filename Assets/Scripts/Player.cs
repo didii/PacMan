@@ -13,9 +13,11 @@ public class Player : MonoBehaviour {
 
     private Vector2? _jumpPos;
     private Animator _animator;
-    private NodeMovement _nodeMovement;
+    private MoveQueue _moveQueue;
     private IntersectionNode _collidingNode;
     private bool _fire1Pressed;
+
+    private int count = 0;
     #endregion
 
     #region Properties
@@ -30,12 +32,12 @@ public class Player : MonoBehaviour {
     /// Use this for initialization
     /// </summary>
     void Start() {
-        _nodeMovement = GetComponent<NodeMovement>();
+        _moveQueue = GetComponent<MoveQueue>();
         _animator = GetComponent<Animator>();
         _animator.Play("PlayerRight");
         _animator.enabled = false;
 
-        _nodeMovement.DirectionChanged += OnDirectionChange;
+        _moveQueue.DirectionChanged += OnDirectionChange;
     }
 
     #endregion
@@ -47,18 +49,21 @@ public class Player : MonoBehaviour {
     /// </summary>
     void Update() {
         if (Input.GetButtonDown("Up") && (_collidingNode == null || _collidingNode.AllowUp))
-            _nodeMovement.NextDirection = Utility.EDirection4.Up;
+            _moveQueue.NextDirection = Utility.EDirection4.Up;
         else if (Input.GetButtonDown("Right") && (_collidingNode == null || _collidingNode.AllowRight))
-            _nodeMovement.NextDirection = Utility.EDirection4.Right;
+            _moveQueue.NextDirection = Utility.EDirection4.Right;
         else if (Input.GetButtonDown("Down") && (_collidingNode == null || _collidingNode.AllowDown))
-            _nodeMovement.NextDirection = Utility.EDirection4.Down;
+            _moveQueue.NextDirection = Utility.EDirection4.Down;
         else if (Input.GetButtonDown("Left") && (_collidingNode == null || _collidingNode.AllowLeft))
-            _nodeMovement.NextDirection = Utility.EDirection4.Left;
+            _moveQueue.NextDirection = Utility.EDirection4.Left;
 
-        if (_nodeMovement.CurrentDirection != Utility.EDirection4.None)
+        if (_moveQueue.CurrentDirection != Utility.EDirection4.None)
             _collidingNode = null;
     }
 
+    void LateFixedUpdate() {
+        Debug.Log("LateFixedUpdateCall: " + ++count);
+    }
     #endregion
 
     #region Events
@@ -105,18 +110,18 @@ public class Player : MonoBehaviour {
 
     public void OnNodeTrigger(IntersectionNode node) {
         // Check if next direction is allowed
-        if (_nodeMovement.NextDirection != Utility.EDirection4.None && node.IsAllowed(_nodeMovement.NextDirection)) {
+        if (_moveQueue.NextDirection != Utility.EDirection4.None && node.IsAllowed(_moveQueue.NextDirection)) {
             // Set correct position and update movement
             transform.position = node.Position;
-            _nodeMovement.CurrentDirection = _nodeMovement.NextDirection;
+            _moveQueue.CurrentDirection = _moveQueue.NextDirection;
             //if (_nodeMovement.CurrentDirection != Utility.EDirection.None)
             //    _collidingNode = null;
         }
         // Check if current direction is allowed
-        else if (!node.IsAllowed(_nodeMovement.CurrentDirection)) {
+        else if (!node.IsAllowed(_moveQueue.CurrentDirection)) {
             //GetComponent<Rigidbody2D>().position = node.Position;
             transform.position = node.Position;
-            _nodeMovement.CurrentDirection = Utility.EDirection4.None;
+            _moveQueue.CurrentDirection = Utility.EDirection4.None;
             _collidingNode = node;
         }
     }
@@ -127,7 +132,7 @@ public class Player : MonoBehaviour {
     }
 
     public void OnTeleportAnimationEnd() {
-        _nodeMovement.Resume();
+        _moveQueue.Resume();
         _jumpPos = null;
     }
 

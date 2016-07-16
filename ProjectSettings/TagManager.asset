@@ -7,10 +7,11 @@ TagManager:
   - PersistentInfo
   - Enemy
   - Node
-  - Level
+  - ExitNode
   - LifeIndicator
-  - DotLine
+  - Level
   - Dot
+  - DotLine
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Entity
   - PlayerNode
   - Node
-  - 
+  - Dot
   - 
   - 
   - 

@@ -15,12 +15,10 @@ public class LevelInfoEditor : Editor {
     public override void OnInspectorGUI() {
         this.DrawDefaultInspector();
         _self = (LevelInfo)target;
-        if (GUILayout.Button("Insert DotLines")) {
+        if (GUILayout.Button("Insert DotLines"))
             AddDotLines();
-        }
-        if (GUILayout.Button("Place Dots")) {
+        if (GUILayout.Button("Place Dots"))
             AddDots();
-        }
         if (GUILayout.Button("Remove Dots"))
             RemoveDots();
     }
@@ -75,9 +73,9 @@ public class LevelInfoEditor : Editor {
             // Convert to line segment
             var nodes = dotLine.GetComponent<DotLine>().Nodes.Select(o => o.transform.position).ToArray();
             // Iterate over the nodes and place dots in-between
-            Vector3? node1 = null, node2 = null;
+            Vector3? node1 = null;
             foreach (var node in nodes) {
-                node2 = node1;
+                var node2 = node1;
                 node1 = node;
                 if (node2 == null)
                     continue; // skip first iteration

@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 
     public float JumpDistance;
     public LevelInfo LevelInfo;
-
+    public GameInfo GameInfo;
 
     private Vector2? _jumpPos;
     private Animator _animator;
@@ -66,8 +66,10 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy")
             Destroy(this.gameObject);
-        if (other.tag == "Dot")
+        if (other.tag == "Dot") {
             Destroy(other.gameObject);
+            GameInfo.Score += 10;
+        }
     }
 
     void OnDirectionChange(Utility.EDirection4 dir) {

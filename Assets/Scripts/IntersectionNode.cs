@@ -10,7 +10,7 @@ public class IntersectionNode : MonoBehaviour {
     
     public bool AllowUp, AllowRight, AllowDown, AllowLeft;
     public bool DotsUp, DotsRight, DotsDown, DotsLeft;
-
+    public bool IsExitNode = false;
 
     [Header("Editor")]
     public Rect MaxSearchRect;
@@ -150,8 +150,12 @@ public class IntersectionNode : MonoBehaviour {
     public void OnTrigger2D(Collider2D other) {
         if (other.gameObject.tag == "Player")
             other.GetComponentInParent<Player>().OnNodeTrigger(this);
-        else if (other.gameObject.tag == "Enemy")
-            other.GetComponentInParent<Ghost>().OnNodeTrigger(this);
+        else if (other.gameObject.tag == "Enemy") {
+            if (IsExitNode)
+                other.GetComponentInParent<Ghost>().OnExitNodeTrigger();
+            else
+                other.GetComponentInParent<Ghost>().OnNodeTrigger(this);
+        }
     }
 
     #endregion

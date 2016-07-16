@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f279c2ac1f4a1d148bed01ccbf9bea77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Behavior: 0
+  State: 0
 --- !u!114 &11472698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6c6db4750bddd4a8dfd3b33e67fb81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
-  AllowReverse: 1
+  Speed: 2
+  AllowReverse: 0
 --- !u!212 &21269852
 SpriteRenderer:
   m_ObjectHideFlags: 1

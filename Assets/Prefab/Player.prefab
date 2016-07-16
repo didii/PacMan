@@ -152,8 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5517da78f1b6b34eaebf43074080bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpDistance: 0.8
+  JumpDistance: 1.2
   LevelInfo: {fileID: 0}
+  GameInfo: {fileID: 0}
 --- !u!114 &11490708
 MonoBehaviour:
   m_ObjectHideFlags: 1

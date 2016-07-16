@@ -42,7 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlickerDuration: 3
-  FlickerSpeed: 0.3
+  FlickerSpeed: 0.2
   LifeDuration: 10
 --- !u!212 &21213998
 SpriteRenderer:

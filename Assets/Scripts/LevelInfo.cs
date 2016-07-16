@@ -16,6 +16,9 @@ public class LevelInfo : MonoBehaviour {
     private HashSet<LineSegment2D> _nodeConnections;
 
     [Header("Editor")] public GameObject DotLinePrefab;
+    public GameObject DotPrefab;
+    public float DotSpacing = 0.6f;
+
     #endregion
 
     #region Properties

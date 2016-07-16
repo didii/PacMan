@@ -48,9 +48,7 @@ public class IntersectionNode : MonoBehaviour {
     void Start() {}
 
     // Update is called once per frame
-    void Update() {
-
-    }
+    void Update() {}
     #endregion
 
     #region Methods

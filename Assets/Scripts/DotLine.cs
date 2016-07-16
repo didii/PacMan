@@ -5,22 +5,25 @@ using System.Linq;
 
 public class DotLine : MonoBehaviour {
 
-    public LineSegment2D _line;
-    public GameObject[] Nodes;
-
     public LineSegment2D Line {
-        get { return _line; }
-        set {
-            _line = value;
-            
+        get {
+            var bounds = GetComponent<MeshRenderer>().bounds;
+            var dir = bounds.extents.x > bounds.extents.y
+                          ? Vector3.right : Vector3.up;
+            var start = bounds.center - bounds.extents.Multiply(dir);
+            var end = bounds.center + bounds.extents.Multiply(dir);
+            return new LineSegment2D(start, end);
         }
     }
 
-    void Start() {
-        FindCollidingNodes();
+    public GameObject[] Nodes {
+        get {
+            var line = Line;
+            return Physics2D.RaycastAll(line.Start, line.Direction, line.Length, 1 << LayerMask.NameToLayer("Node")) // Get all colliding nodes
+                     .Select(o => o.transform.gameObject) // Select the GameObject
+                     .Where(go => !(go.tag == "Player" || go.tag == "Enemy")) // Remove with tag Player and Enemy
+                     .ToArray();
+        }
     }
 
-    private void FindCollidingNodes() {
-        Nodes = Physics2D.RaycastAll(_line.Start, _line.Direction, _line.Length, LayerMask.NameToLayer("Node")).Select(o => o.transform.gameObject).ToArray();
-    }
 }

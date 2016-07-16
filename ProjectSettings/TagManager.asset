@@ -10,6 +10,7 @@ TagManager:
   - Level
   - LifeIndicator
   - DotLine
+  - Dot
   layers:
   - Default
   - TransparentFX

@@ -71,6 +71,20 @@ public static class Utility {
     #endregion
 
     #region EDirection extensions
+
+    public static Vector2 ToVector2(EDirection2 dir2) {
+        switch (dir2) {
+        case EDirection2.None:
+            return Vector2.zero;
+        case EDirection2.Horizontal:
+            return Vector2.right;
+        case EDirection2.Vertical:
+            return Vector2.up;
+        default:
+            throw new ArgumentOutOfRangeException("dir2", dir2, null);
+        }
+    }
+
     /// <summary>
     /// Converts a <see cref="EDirection4"/> to a <see cref="EDirection2"/>.
     /// </summary>
@@ -403,6 +417,12 @@ public static class Utility {
         return new Vector2(lhs.x*rhs.x, lhs.y*rhs.y);
     }
 
+    public static Vector3 ToVector3(this Vector2 source, float z) {
+        var result = (Vector3)source;
+        result.z = z;
+        return result;
+    }
+
     #endregion
 
     #region Vector2i extensions
@@ -622,4 +642,8 @@ public static class Utility {
     }
 
     #endregion
+
+    public static Vector3 GetScaleFromBounds(Bounds original, Bounds desired) {
+        return desired.extents.Divide(original.extents);
+    }
 }

@@ -151,9 +151,7 @@ public class IntersectionNode : MonoBehaviour {
         if (other.gameObject.tag == "Player")
             other.GetComponentInParent<Player>().OnNodeTrigger(this);
         else if (other.gameObject.tag == "Enemy") {
-            if (IsExitNode)
-                other.GetComponentInParent<Ghost>().OnExitNodeTrigger();
-            else
+            if (IsExitNode && !other.GetComponentInParent<Ghost>().OnExitNodeTrigger())
                 other.GetComponentInParent<Ghost>().OnNodeTrigger(this);
         }
     }

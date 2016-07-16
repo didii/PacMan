@@ -326,6 +326,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -670,6 +674,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -880,6 +888,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -1149,6 +1161,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -1633,6 +1649,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -1741,6 +1761,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -1833,6 +1857,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -2000,6 +2028,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -2269,6 +2301,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -2420,6 +2456,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -2512,6 +2552,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -2619,6 +2663,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -2904,6 +2952,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -3409,6 +3461,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -3560,6 +3616,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -3652,6 +3712,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -4033,6 +4097,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -4125,6 +4193,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -4308,6 +4380,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -4801,6 +4877,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -5465,6 +5545,56 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &588099102
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 460064, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.61
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &591582311
 Transform:
   m_ObjectHideFlags: 0
@@ -5782,6 +5912,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -5948,6 +6082,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -6099,6 +6237,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -6560,6 +6702,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -7023,6 +7169,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -7747,6 +7897,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -7855,6 +8009,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -8006,6 +8164,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -8098,6 +8260,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -8288,6 +8454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ec227005f796d48b61015ead573c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DotLinePrefab: {fileID: 140040, guid: f1846e39e991d0c40a76bfaed162cd88, type: 2}
+  DotPrefab: {fileID: 197398, guid: ff7dbd4821816554f8d686f151322b05, type: 2}
 --- !u!1 &869767752
 GameObject:
   m_ObjectHideFlags: 0
@@ -8381,6 +8549,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -8726,6 +8898,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -8877,6 +9053,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -9274,6 +9454,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -9543,6 +9727,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -9769,6 +9957,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -10003,6 +10195,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1c1d5a881080bf44a92352b3410bdb1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1053869368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1053869369}
+  m_Layer: 0
+  m_Name: Dots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053869369
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1053869368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!4 &1064982854
 Transform:
   m_ObjectHideFlags: 0
@@ -10188,6 +10408,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -10398,6 +10622,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -10889,6 +11117,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -11409,6 +11641,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -11560,6 +11796,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -11652,6 +11892,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -12131,6 +12375,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -12223,6 +12471,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -12614,6 +12866,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -12889,6 +13145,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -13824,6 +14084,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -14093,6 +14357,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -14185,6 +14453,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -14352,6 +14624,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -14444,6 +14720,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -15280,6 +15560,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -15372,6 +15656,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -15538,6 +15826,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -15926,6 +16218,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -16033,6 +16329,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -16408,6 +16708,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -16500,6 +16804,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -16654,6 +16962,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -17017,6 +17329,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -17109,6 +17425,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -17216,6 +17536,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -17308,6 +17632,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -17661,7 +17989,7 @@ GameObject:
   - 61: {fileID: 2035469419}
   - 114: {fileID: 2035469418}
   m_Layer: 10
-  m_Name: IntersectionNode
+  m_Name: IntersectionNode (0)
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17683,6 +18011,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -17968,6 +18300,10 @@ MonoBehaviour:
   AllowRight: 0
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -18252,6 +18588,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -18344,6 +18684,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -18821,6 +19165,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 0
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -18913,6 +19261,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 0
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6
@@ -19064,6 +19416,10 @@ MonoBehaviour:
   AllowRight: 1
   AllowDown: 1
   AllowLeft: 1
+  DotsUp: 0
+  DotsRight: 0
+  DotsDown: 0
+  DotsLeft: 0
   MaxSearchRect:
     serializedVersion: 2
     x: -6

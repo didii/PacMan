@@ -3,7 +3,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
+
 
 public class LevelInfo : MonoBehaviour {
 
@@ -12,6 +14,11 @@ public class LevelInfo : MonoBehaviour {
     private Bounds _levelSize;
     private HashSet<GameObject> _nodes;
     private HashSet<LineSegment2D> _nodeConnections;
+
+    [Header("Editor")] public GameObject DotLinePrefab;
+    public GameObject DotPrefab;
+    public float DotSpacing = 0.6f;
+
     #endregion
 
     #region Properties
@@ -30,7 +37,7 @@ public class LevelInfo : MonoBehaviour {
     #endregion
 
     // Use this for initialization
-    void Start() {
+    public void Start() {
         _levelSize = GetComponent<SpriteRenderer>().bounds;
 
         // Get all intersection nodes
@@ -118,6 +125,10 @@ public class LevelInfo : MonoBehaviour {
         foreach (var line in _nodeConnections)
             line.Draw();
     }
+
+    #endregion
+
+    #region Editor methods
 
     #endregion
 }

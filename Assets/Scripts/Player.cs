@@ -66,6 +66,8 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy")
             Destroy(this.gameObject);
+        if (other.tag == "Dot")
+            Destroy(other.gameObject);
     }
 
     void OnDirectionChange(Utility.EDirection4 dir) {

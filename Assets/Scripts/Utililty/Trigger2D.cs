@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Makes sure colliding always happens for very small objects by doing a raycast over the travelled path.
+/// </summary>
 public class Trigger2D : MonoBehaviour {
 
     #region Fields
@@ -71,7 +74,7 @@ public class Trigger2D : MonoBehaviour {
                     hit.collider.SendMessage("OnTrigger2D", _collider, SendMessageOptions.DontRequireReceiver);
                 } // Not yet checked 
                 if (!hit.collider.isTrigger)
-                    transform.position = hit.point - (movementThisStep / movementMagnitude) * _partialExtent;
+                    transform.position = hit.point - movementThisStep/movementMagnitude*_partialExtent;
             }
         }
         _previousPosition = transform.position;

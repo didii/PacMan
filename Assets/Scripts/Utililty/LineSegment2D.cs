@@ -7,6 +7,7 @@
 //
 
 using System;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 /// <summary>
@@ -32,28 +33,47 @@ using UnityEngine;
 /// </code>
 /// </remarks>
 /// 
+[Serializable]
 public class LineSegment2D {
     #region Fields
-    // segment's start/end point
-    private readonly Vector2 _start;
-    private readonly Vector2 _end;
-
-    private readonly Line2D _line;
+    /// <summary>
+    /// Start point of the segment.
+    /// </summary>
+    [SerializeField] private Vector2 _start;
+    /// <summary>
+    /// End point of the segment.
+    /// </summary>
+    [SerializeField] private Vector2 _end;
+    
+    /// <summary>
+    /// <see cref="Line2D"/> representation of this segment.
+    /// </summary>
+    private Line2D _line;
     #endregion
 
     #region Properties
     /// <summary>
     /// Start point of the line segment.
     /// </summary>
+    [ExposeProperty]
     public Vector2 Start {
         get { return _start; }
+        set {
+            _start = value;
+            SetLine2D();
+        }
     }
 
     /// <summary>
     /// End point of the line segment.
     /// </summary>
+    [ExposeProperty]
     public Vector2 End {
         get { return _end; }
+        set {
+            _end = value;
+            SetLine2D();
+        }
     }
 
     /// <summary>
@@ -68,6 +88,27 @@ public class LineSegment2D {
     /// </summary>
     public Vector2 Direction {
         get { return (_end - _start).normalized; }
+    }
+
+    /// <summary>
+    /// Returns the angle between the X-axis and the line. Always in [0,2pi[.
+    /// </summary>
+    public float Angle {
+        get { return Mathf.Atan2(End.y - Start.y, End.x - Start.x); }
+    }
+
+    /// <summary>
+    /// Returns the angle between the X-axis and the line. Always in [0,pi[.
+    /// </summary>
+    public float AngleTop {
+        get { return ((Line2D)this).Angle; }
+    }
+
+    /// <summary>
+    /// Returns the center point of the line segment.
+    /// </summary>
+    public Vector2 Center {
+        get { return (Start + End)/2; }
     }
     #endregion
 
@@ -98,6 +139,13 @@ public class LineSegment2D {
         this._end = start + direction.normalized*length;
         _line = Line2D.FromPoints(_start, _end);
     }
+
+    /// <summary>
+    /// Copy constructor.
+    /// </summary>
+    /// <param name="other"></param>
+    public LineSegment2D(LineSegment2D other)
+        : this(other._start, other._end) {}
 
     /// <summary>
     /// Converts this <see cref="LineSegment2D"/> to a <see cref="Line2D"/> by discarding
@@ -345,6 +393,13 @@ public class LineSegment2D {
         ProjectionLocation result = (numerator < 0) ? ProjectionLocation.RayA : (numerator > denomenator) ? ProjectionLocation.RayB : ProjectionLocation.SegmentAB;
 
         return result;
+    }
+
+    /// <summary>
+    /// Recalibrates the <see cref="Line2D"/> field.
+    /// </summary>
+    private void SetLine2D() {
+        _line = Line2D.FromPoints(Start, End);
     }
     #endregion
 

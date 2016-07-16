@@ -46,9 +46,9 @@ public class LevelInfoEditor : Editor {
 
             // Set scale to match width or height
             var currBounds = obj.GetComponent<MeshRenderer>().bounds;
-            var length = line.Length + 0.05f;
-            var boundsSize = new Vector3(line.ToDirection2() == Utility.EDirection2.Horizontal ? length : 0.25f,
-                                         line.ToDirection2() == Utility.EDirection2.Vertical ? length : 0.25f,
+            var length = line.Length + 0.04f;
+            var boundsSize = new Vector3(line.ToDirection2() == Utility.EDirection2.Horizontal ? length : 0.03f,
+                                         line.ToDirection2() == Utility.EDirection2.Vertical ? length : 0.03f,
                                          0.25f);
             var newBounds = new Bounds(line.Center, boundsSize);
             obj.transform.localScale = Utility.GetScaleFromBounds(currBounds, newBounds);

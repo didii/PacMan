@@ -26,7 +26,6 @@ public class Ghost : MonoBehaviour {
     // Use this for initialization
     void Start () {
         _nodeMovement = GetComponent<NodeMovement>();
-        //_nodeMovement.CurrentDirection = Utility.EDirection.Down;
     }
 	
 	// Update is called once per frame
@@ -34,12 +33,13 @@ public class Ghost : MonoBehaviour {
 	    
 	}
 
-    public void OnExitNodeTrigger() {
+    public bool OnExitNodeTrigger() {
         if (Random.value > .25/ExitCount)
-            return;
+            return false;
 
         _nodeMovement.CurrentDirection = Utility.EDirection4.Up;
         ExitCount++;
+        return true;
     }
 
     public void OnNodeTrigger(IntersectionNode node) {

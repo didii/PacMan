@@ -5,18 +5,20 @@ using UnityEngine;
 /// <summary>
 /// Queue a single movement with some extra functionality.
 /// </summary>
+/// <remarks>Needs a <see cref="Rigidbody2D"/> attached to the <see cref="GameObject"/>. It updates
+/// the velocity of it automatically.</remarks>
 public class MoveQueue : MonoBehaviour {
 
     #region Fields
-    
+    /// <summary> What value to set Rigidbody2D.velocity to.</summary>
     public float Speed;
-    /// <summary>
-    /// If set to true, the opposite direction is not blocked.
-    /// </summary>
+    /// <summary> If set to true, the opposite direction is not blocked.</summary>
     public bool AllowReverse = true;
+
 
     public event Action<Utility.EDirection4> DirectionChanged;
 
+    /// <summary></summary>
     private Utility.EDirection4 _currDirection = Utility.EDirection4.None;
     private Utility.EDirection4 _nextDirection = Utility.EDirection4.None;
     private Utility.EDirection4[] _allowedDirections = null;
@@ -66,13 +68,13 @@ public class MoveQueue : MonoBehaviour {
 
     /// <summary>
     /// Gets or sets the next direction of movement. CurrentDirection will be updated if allowed.
-    /// 
+    /// </summary>
     /// <remarks>
     /// <para> <see cref="CurrentDirection"/> is immediately updated if <see cref="Wait"/> was not recently used and
     /// <list type="bullet">
     /// <item><see cref="CurrentDirection"/> is set to <see cref="Utility.EDirection4.None"/></item>
     /// <item><paramref name="value"/> is the opposite of <see cref="CurrentDirection"/> when
-    /// <see cref="AllowReverse"/> was specified</item>
+    ///         <see cref="AllowReverse"/> was specified</item>
     /// </list>
     /// In all other cases when <see cref="Wait"/> was not recently used, <paramref name="value"/> is discarded if it
     /// is the same as <see cref="CurrentDirection"/> and stored if not.</para>
@@ -80,7 +82,6 @@ public class MoveQueue : MonoBehaviour {
     /// <para>If <see cref="Wait"/> was recently used, <see cref="CurrentDirection"/> will always immeidately update if
     /// the direction is allowed.</para>
     /// </remarks>
-    /// </summary>
     public Utility.EDirection4 NextDirection {
         get { return _nextDirection; }
         set {
@@ -126,12 +127,20 @@ public class MoveQueue : MonoBehaviour {
     #endregion
 
     #region Methods
-
+    /// <summary>
+    /// Set <see cref="NextDirection"/> as <see cref="CurrentDirection"/> if 
+    /// <paramref name="condition"/>(NextDirection) returns true.
+    /// </summary>
+    /// <param name="condition"></param>
     public void Go(Func<Utility.EDirection4, bool> condition) {
         if (condition(NextDirection))
             CurrentDirection = NextDirection;
     }
 
+    /// <summary>
+    /// Halts movement.
+    /// </summary>
+    /// <seealso cref="Resume"/>
     public void Wait() {
         _allowedDirections = AllowReverse ? new Utility.EDirection4[2] : new Utility.EDirection4[1];
         _allowedDirections[0] = CurrentDirection;
@@ -140,6 +149,15 @@ public class MoveQueue : MonoBehaviour {
         CurrentDirection = Utility.EDirection4.None;
     }
 
+    /// <summary>
+    /// Resume last movement.
+    /// </summary>
+    /// <remarks>
+    /// When <see cref="AllowReverse"/> is set to true, movement will resume in the
+    /// opposite direction if <see cref="NextDirection"/> is also opposite of the current
+    /// direction.
+    /// </remarks>
+    /// <seealso cref="Wait"/>
     public void Resume() {
         if (_allowedDirections == null) return;
         CurrentDirection = _allowedDirections[0];

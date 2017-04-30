@@ -24,7 +24,9 @@ public class Trigger2D : MonoBehaviour {
     #endregion
 
     #region Initialization
-    //initialize values 
+    /// <summary>
+    /// Initialize some values
+    /// </summary> 
     void Start() {
         _collider = GetComponent<Collider2D>();
         _previousPosition = transform.position;

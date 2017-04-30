@@ -1,21 +1,28 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 using System.Linq;
 using Random = UnityEngine.Random;
 
 public class Ghost : MonoBehaviour {
 
+    /// <summary>
+    /// Different types of behaviour for the different ghosts
+    /// </summary>
     public enum EBehavior {
         Random, StayInFront, StayBehind, KeepDistance
     }
 
+    /// <summary>
+    /// Scatter of chase state (scatter = random, chasing is from <see cref="EBehavior"/>
+    /// </summary>
     public enum EState {
         Chasing, Scatter
     }
 
     #region Fields
-
+    /// <summary>
+    /// Adapts the chance to get out a bit
+    /// </summary>
     public static int ExitCount = 1;
 
     public EBehavior Behavior = EBehavior.Random;
@@ -23,16 +30,17 @@ public class Ghost : MonoBehaviour {
     private MoveQueue _moveQueue;
     #endregion
 
-    // Use this for initialization
+    /// <summary>
+    /// Use this for initialization
+    /// </summary>
     void Start () {
         _moveQueue = GetComponent<MoveQueue>();
     }
 	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
-
+    /// <summary>
+    /// If on an exit node, there is a smaller chance to go up
+    /// </summary>
+    /// <returns></returns>
     public bool OnExitNodeTrigger() {
         if (Random.value > .25/ExitCount)
             return false;
@@ -42,6 +50,10 @@ public class Ghost : MonoBehaviour {
         return true;
     }
 
+    /// <summary>
+    /// Behaviour when on <see cref="IntersectionNode"/>
+    /// </summary>
+    /// <param name="node"></param>
     public void OnNodeTrigger(IntersectionNode node) {
         switch (Behavior) {
         case EBehavior.Random:
@@ -61,6 +73,10 @@ public class Ghost : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// When on a node, go to a randomly allowed direction except backwards
+    /// </summary>
+    /// <param name="node"></param>
     private void OnNodeTriggerRandom(IntersectionNode node) {
         var dirs = node.AllowedDirections;
         if (dirs.Contains(_moveQueue.CurrentDirection.Opposite()) && dirs.Count > 1)
@@ -70,14 +86,26 @@ public class Ghost : MonoBehaviour {
         _moveQueue.CurrentDirection = dirs.ElementAt((int)(Random.value * dirs.Count));
     }
 
+    /// <summary>
+    /// When on a node, try to get in front of the player
+    /// </summary>
+    /// <param name="node"></param>
     private void OnNodeTriggerInFront(IntersectionNode node) {
         
     }
 
+    /// <summary>
+    /// When on a node, try to get behind the player
+    /// </summary>
+    /// <param name="node"></param>
     private void OnNodeTriggerBehind(IntersectionNode node) {
         
     }
 
+    /// <summary>
+    /// When on a node, keep at a certain distance of the player
+    /// </summary>
+    /// <param name="node"></param>
     private void OnNodeTriggerDistance(IntersectionNode node) {
         
     }

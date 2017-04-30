@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+/// <summary>
+/// Simply puts a button in the inspector which you can use to do whatever
+/// </summary>
 public class Test : MonoBehaviour {
 
     public void Do() {

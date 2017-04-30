@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// General info about the game!
+/// </summary>
 public class GameInfo : MonoBehaviour {
 
     [Header("Game Info")]
@@ -11,11 +14,6 @@ public class GameInfo : MonoBehaviour {
     [Header("UI Elements")]
     public Text ScoreText;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
 	// Update is called once per frame
 	void Update () {
 	    ScoreText.text = Score.ToString();

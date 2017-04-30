@@ -1,20 +1,18 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 using JetBrains.Annotations;
 using Random = UnityEngine.Random;
 
+/// <summary>
+///     Way too much utility functions in a single file
+/// </summary>
 public static class Utility {
-
     #region Enums
     /// <summary>
-    /// An enum defining the 2 orthogonal lines including None.
+    ///     An enum defining the 2 orthogonal lines including None.
     /// </summary>
     public enum EDirection2 {
         None,
@@ -23,7 +21,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// An enum defining the 4 orthogonal directions in 2D space including None
+    ///     An enum defining the 4 orthogonal directions in 2D space including None
     /// </summary>
     public enum EDirection4 {
         None,
@@ -34,7 +32,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// An enum defining the classical 8 direction in 2D space including None
+    ///     An enum defining the classical 8 direction in 2D space including None
     /// </summary>
     public enum EDirection8 {
         None,
@@ -51,7 +49,7 @@ public static class Utility {
 
     #region Enum extensions
     /// <summary>
-    /// Returns the number of values in an enum
+    ///     Returns the number of values in an enum
     /// </summary>
     /// <param name="e"></param>
     /// <returns></returns>
@@ -59,6 +57,11 @@ public static class Utility {
         return Enum.GetValues(e.GetType()).Length;
     }
 
+    /// <summary>
+    ///     Counts the number of flags set in the enum <paramref name="e"/>
+    /// </summary>
+    /// <param name="e"></param>
+    /// <returns></returns>
     public static int FlagCount(this Fruit.EFruit e) {
         int count = 0;
         var values = Enum.GetValues(e.GetType());
@@ -71,7 +74,11 @@ public static class Utility {
     #endregion
 
     #region EDirection extensions
-
+    /// <summary>
+    ///     Converts a <see cref="EDirection2"/> to the corresponding <see cref="Vector2"/>
+    /// </summary>
+    /// <param name="dir2"></param>
+    /// <returns></returns>
     public static Vector2 ToVector2(EDirection2 dir2) {
         switch (dir2) {
         case EDirection2.None:
@@ -86,7 +93,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Converts a <see cref="EDirection4"/> to a <see cref="EDirection2"/>.
+    ///     Converts a <see cref="EDirection4"/> to a <see cref="EDirection2"/>.
     /// </summary>
     /// <param name="dir4"></param>
     /// <returns></returns>
@@ -106,7 +113,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Converts a <see cref="EDirection8"/> to a <see cref="EDirection2"/>.
+    ///     Converts a <see cref="EDirection8"/> to a <see cref="EDirection2"/>.
     /// </summary>
     /// <param name="dir8"></param>
     /// <returns></returns>
@@ -131,7 +138,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Converts an <see cref="EDirection8"/> to <see cref="EDirection4"/>. Throws an exception if given value is diagonal.
+    ///     Converts an <see cref="EDirection8"/> to <see cref="EDirection4"/>. Throws an exception if given value is diagonal.
     /// </summary>
     /// <param name="dir8"></param>
     /// <returns></returns>
@@ -140,23 +147,22 @@ public static class Utility {
             return EDirection4.None;
         if (((int)dir8).IsEven())
             throw new InvalidEnumArgumentException("dir8", (int)dir8, dir8.GetType());
-        return (EDirection4)(((int)dir8 + 1)/2);
+        return (EDirection4)(((int)dir8 + 1) / 2);
     }
 
     /// <summary>
-    /// Converts a <see cref="EDirection4"/> to <see cref="EDirection8"/>
+    ///     Converts a <see cref="EDirection4"/> to <see cref="EDirection8"/>
     /// </summary>
     /// <param name="dir4"></param>
     /// <returns></returns>
     public static EDirection8 To8(this EDirection4 dir4) {
         if (dir4 == EDirection4.None)
             return EDirection8.None;
-        return (EDirection8)((int)dir4*2 - 1);
+        return (EDirection8)((int)dir4 * 2 - 1);
     }
 
-
     /// <summary>
-    /// Check to see if both <see cref="EDirection4"/> are opposite to each other
+    ///     Check to see if both <see cref="EDirection4"/> are opposite to each other
     /// </summary>
     /// <param name="lhs"></param>
     /// <param name="rhs"></param>
@@ -166,7 +172,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Check to see if both <see cref="EDirection8s"/> are opposite to each other
+    ///     Check to see if both <see cref="EDirection8s"/> are opposite to each other
     /// </summary>
     /// <param name="lhs"></param>
     /// <param name="rhs"></param>
@@ -176,29 +182,29 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Get the opposite <see cref="EDirection4"/> of the given value
+    ///     Get the opposite <see cref="EDirection4"/> of the given value
     /// </summary>
     /// <param name="dir"></param>
     /// <returns></returns>
     public static EDirection4 Opposite(this EDirection4 dir) {
         if (dir == EDirection4.None)
             return EDirection4.None;
-        return (EDirection4)(((int)dir + 1)%4 + 1);
+        return (EDirection4)(((int)dir + 1) % 4 + 1);
     }
 
     /// <summary>
-    /// Get the opposite <see cref="EDirection8"/> of the given value
+    ///     Get the opposite <see cref="EDirection8"/> of the given value
     /// </summary>
     /// <param name="dir"></param>
     /// <returns></returns>
     public static EDirection8 Opposite(this EDirection8 dir) {
         if (dir == EDirection8.None)
             return EDirection8.None;
-        return (EDirection8)(((int)dir + 3)%(dir.Count() - 1) + 1);
+        return (EDirection8)(((int)dir + 3) % (dir.Count() - 1) + 1);
     }
 
     /// <summary>
-    /// Get the direction as a <see cref="Vector2"/>
+    ///     Get the direction as a <see cref="Vector2"/>
     /// </summary>
     /// <param name="dir"></param>
     /// <returns></returns>
@@ -207,7 +213,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Get the direction as a <see cref="Vector2"/>
+    ///     Get the direction as a <see cref="Vector2"/>
     /// </summary>
     /// <param name="dir"></param>
     /// <returns></returns>
@@ -235,13 +241,11 @@ public static class Utility {
             throw new ArgumentOutOfRangeException("dir", dir, null);
         }
     }
-
     #endregion
 
     #region Bool extensions
-
     /// <summary>
-    /// Bool conversion to int (false=0, true=1)
+    ///     Bool conversion to int (false=0, true=1)
     /// </summary>
     /// <param name="val">The bool value</param>
     /// <returns>0 if false, 1 if true</returns>
@@ -250,20 +254,18 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Bool conversion to int (false=-1, true=1)
+    ///     Bool conversion to int (false=-1, true=1)
     /// </summary>
     /// <param name="val">The bool value</param>
     /// <returns>-1 if false, 1 if true</returns>
     public static int ToIntSign(this bool val) {
         return val ? 1 : -1;
     }
-
     #endregion
 
     #region Int extensions
-
     /// <summary>
-    /// Returns true if value is even
+    ///     Returns true if value is even
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
@@ -272,26 +274,24 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Returns true if value is uneven
+    ///     Returns true if value is uneven
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
     public static bool IsUneven(this int value) {
         return (value & 1) == 1;
     }
-
     #endregion
 
     #region Float utilities
-
     /// <summary>
-    /// Default tolerance value used for floating point number for comparing
+    ///     Default tolerance value used for floating point number for comparing
     /// </summary>
     /// <returns>1e-6f</returns>
     public const float FloatTolerance = 1e-6f;
 
     /// <summary>
-    /// Returns true if val is strictly between bound1 and bound2
+    ///     Returns true if val is strictly between bound1 and bound2
     /// </summary>
     /// <param name="val">The value to compare</param>
     /// <param name="bound1">First bound</param>
@@ -303,7 +303,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Returns true if val is between bound1 and bound2 including the lower bound
+    ///     Returns true if val is between bound1 and bound2 including the lower bound
     /// </summary>
     /// <param name="val">The value to compare</param>
     /// <param name="bound1">First bound</param>
@@ -315,7 +315,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Returns true if val is between bound1 and bound2 including the upper bound
+    ///     Returns true if val is between bound1 and bound2 including the upper bound
     /// </summary>
     /// <param name="val"></param>
     /// <param name="bound1"></param>
@@ -327,7 +327,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Returns true if val is the same or between bound1 and bound2
+    ///     Returns true if val is the same or between bound1 and bound2
     /// </summary>
     /// <param name="val"></param>
     /// <param name="bound1"></param>
@@ -339,7 +339,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Changes the first value to the lowest and the second to the highest value
+    ///     Swaps the first value to the lowest and the second to the highest value
     /// </summary>
     /// <param name="lower">The value to be changed to the lowest of the 2</param>
     /// <param name="higher">The value to be changed to the highest of the 2</param>
@@ -352,46 +352,31 @@ public static class Utility {
         lower = higher;
         higher = temp;
     }
-
     #endregion
 
     #region Float extensions
-
     /// <summary>
-    /// Converts a radian value to degrees
+    ///     Converts a radian value to degrees
     /// </summary>
     /// <param name="val"></param>
     /// <returns></returns>
     public static float ToDegree(this float val) {
-        return (float)(val*180/Math.PI);
+        return (float)(val * 180 / Math.PI);
     }
 
+    /// <summary>
+    ///     Converts degrees to a radian value
+    /// </summary>
+    /// <param name="val"></param>
+    /// <returns></returns>
     public static float ToRadian(this float val) {
-        return (float)(val*Math.PI/180);
+        return (float)(val * Math.PI / 180);
     }
-
-    #endregion
-
-    #region Double extensions
-
-    public static double ToDegree(this double val) {
-        return val*180/Math.PI;
-    }
-
-    public static double ToRadian(this double val) {
-        return val*Math.PI/180;
-    }
-
-    #endregion
-
-    #region object extensions
-
     #endregion
 
     #region Vector2 extensions
-
     /// <summary>
-    /// Calculates the Euclidian distance between 2 points
+    ///     Calculates the Euclidian distance between 2 points
     /// </summary>
     /// <param name="source"></param>
     /// <param name="other"></param>
@@ -400,57 +385,79 @@ public static class Utility {
         float dx = source.x - other.x;
         float dy = source.y - other.y;
 
-        return (float)System.Math.Sqrt(dx*dx + dy*dy);
+        return (float)Math.Sqrt(dx * dx + dy * dy);
     }
 
     /// <summary>
-    /// Divides all corresponding elements. 
+    ///     Divides all corresponding elements.
     /// </summary>
     /// <param name="lhs"></param>
     /// <param name="rhs"></param>
     /// <returns>(lhs.x/rhs.x, lhs.y/rhs.y)</returns>
     public static Vector2 Divide(this Vector2 lhs, Vector2 rhs) {
-        return new Vector2(lhs.x/rhs.x, lhs.y/rhs.y);
+        return new Vector2(lhs.x / rhs.x, lhs.y / rhs.y);
     }
 
+    /// <summary>
+    ///     Multiplies all corresponding elements.
+    /// </summary>
+    /// <param name="lhs"></param>
+    /// <param name="rhs"></param>
+    /// <returns></returns>
     public static Vector2 Multiply(this Vector2 lhs, Vector2 rhs) {
-        return new Vector2(lhs.x*rhs.x, lhs.y*rhs.y);
+        return new Vector2(lhs.x * rhs.x, lhs.y * rhs.y);
     }
 
-    public static Vector3 ToVector3(this Vector2 source, float z) {
+    /// <summary>
+    ///     Converts a <see cref="Vector2"/> to a <see cref="Vector3"/> and sets <paramref name="z"/> as the z-parameter.
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="z"></param>
+    /// <returns></returns>
+    public static Vector3 ToVector3(this Vector2 source, float z = 0) {
         var result = (Vector3)source;
         result.z = z;
         return result;
     }
-
     #endregion
 
     #region Vector2i extensions
-
+    /// <summary>
+    ///     Converts a 1D index to a 2D one. Conversion of an array folded into a matrix with <paramref name="width"/> number
+    ///     of columns
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="width"></param>
+    /// <returns></returns>
     public static Vector2i Index1DTo2D(int index, int width) {
-        return new Vector2i(index%width, index/width);
+        return new Vector2i(index % width, index / width);
     }
 
+    /// <summary>
+    ///     Converts a 2D index to a 1D one. Conversion of a matrix with <paramref name="width"/> number of columns unfolded
+    ///     into an array
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="width"></param>
+    /// <returns></returns>
     public static int Index2DTo1D(Vector2i index, int width) {
-        return index.X + index.Y*width;
+        return index.X + index.Y * width;
     }
-
     #endregion
 
     #region Vector3 extensions
-
     /// <summary>
-    /// Divides all corresponding elements. 
+    ///     Divides all corresponding elements.
     /// </summary>
     /// <param name="lhs"></param>
     /// <param name="rhs"></param>
     /// <returns>(lhs.x/rhs.x, lhs.y/rhs.y, lhs.z/rhs.z)</returns>
     public static Vector3 Divide(this Vector3 lhs, Vector3 rhs) {
-        return new Vector3(lhs.x/rhs.x, lhs.y/rhs.y, lhs.z/rhs.z);
+        return new Vector3(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
     }
 
     /// <summary>
-    /// Returns theta, the 
+    ///     Returns theta, the angle of this vector with the x-axis
     /// </summary>
     /// <param name="vec"></param>
     /// <returns></returns>
@@ -458,50 +465,62 @@ public static class Utility {
         return (float)Math.Atan2(vec.y, vec.x);
     }
 
+    /// <summary>
+    ///     Returns phi, the angle of this vector with the z-axis
+    /// </summary>
+    /// <param name="vec"></param>
+    /// <returns></returns>
     public static float Phi(this Vector3 vec) {
         return (float)Math.Atan2(Math.Sqrt(Math.Pow(vec.x, 2) + Math.Pow(vec.y, 2)), vec.z);
     }
 
+    /// <summary>
+    ///     Converts all elements of this vector to positive if the x-value is negative. Not sure why this was implemented...
+    /// </summary>
+    /// <param name="vec"></param>
+    /// <returns></returns>
     public static Vector3 Abs(this Vector3 vec) {
         if (vec.x < 0)
             return -vec;
         return vec;
     }
 
+    /// <summary>
+    ///     Multiplies all corresponding elements with each other
+    /// </summary>
+    /// <param name="lhs"></param>
+    /// <param name="rhs"></param>
+    /// <returns></returns>
     public static Vector3 Multiply(this Vector3 lhs, Vector3 rhs) {
-        return new Vector3(lhs.x*rhs.x, lhs.y*rhs.y, lhs.z*rhs.z);
+        return new Vector3(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z);
     }
-
     #endregion
 
     #region TimeSpan extensions
-
     /// <summary>
-    /// Multiplies the TimeSpan with the given integer
+    ///     Multiplies the TimeSpan with the given integer
     /// </summary>
     /// <param name="ts"></param>
     /// <param name="num"></param>
     /// <returns></returns>
     public static TimeSpan Multiply(this TimeSpan ts, int num) {
-        return TimeSpan.FromTicks(ts.Ticks*num);
+        return TimeSpan.FromTicks(ts.Ticks * num);
     }
 
     /// <summary>
-    /// Multiplies the TimeSpan with the given float
+    ///     Multiplies the TimeSpan with the given float
     /// </summary>
     /// <param name="ts"></param>
     /// <param name="num"></param>
     /// <returns></returns>
     public static TimeSpan Multiply(this TimeSpan ts, float num) {
-        return TimeSpan.FromTicks((long)(ts.Ticks*num));
+        return TimeSpan.FromTicks((long)(ts.Ticks * num));
     }
-
     #endregion
 
     #region Unity extensions
-
     /// <summary>
-    /// Gets the collision mask of the indicated layer
+    ///     Gets the collision mask of the indicated layer
     /// </summary>
     /// <param name="layer"></param>
     /// <returns></returns>
@@ -515,7 +534,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Gets the collision mask of the indicated layer
+    ///     Gets the collision mask of the indicated layer
     /// </summary>
     /// <param name="layer"></param>
     /// <returns></returns>
@@ -524,7 +543,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Gets all children directly under the given one
+    ///     Gets all children directly under the given one
     /// </summary>
     /// <param name="transform"></param>
     /// <returns></returns>
@@ -536,7 +555,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Get all children from the transform, including their children and so forth
+    ///     Get all children from the transform, including their children and so forth
     /// </summary>
     /// <param name="transform"></param>
     /// <returns></returns>
@@ -545,24 +564,27 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Get all children from the transform, including their children and so forth
+    ///     Get all children from the transform, including their children and so forth
     /// </summary>
     /// <param name="transform"></param>
     /// <param name="predicate"></param>
     /// <returns></returns>
     public static Transform[] GetAllChildren(this Transform transform, [NotNull] Func<Transform, bool> predicate) {
-        if (predicate == null) throw new ArgumentNullException("predicate");
+        if (predicate == null)
+            throw new ArgumentNullException("predicate");
         return GetAllChildrenRecursive(transform, predicate, false);
     }
 
     /// <summary>
-    /// Helper function to get all children and their children recursively
+    ///     Helper function to get all children and their children recursively
     /// </summary>
     /// <param name="transform"></param>
     /// <param name="predicate"></param>
     /// <param name="addSelf"></param>
     /// <returns></returns>
-    private static Transform[] GetAllChildrenRecursive(Transform transform, Func<Transform, bool> predicate = null, bool addSelf = true) {
+    private static Transform[] GetAllChildrenRecursive(Transform transform,
+                                                       Func<Transform, bool> predicate = null,
+                                                       bool addSelf = true) {
         var result = new List<Transform>();
         if (addSelf && (predicate == null || predicate(transform)))
             result.Add(transform);
@@ -570,13 +592,11 @@ public static class Utility {
             result.AddRange(GetAllChildrenRecursive(transform.GetChild(i), predicate));
         return result.ToArray();
     }
-
     #endregion
 
     #region ICollection extensions
-
     /// <summary>
-    /// Remove the first element of the collection
+    ///     Remove the first element of the collection
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
@@ -589,7 +609,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Removes the first element of the collection matching the predicate
+    ///     Removes the first element of the collection matching the predicate
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
@@ -608,7 +628,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Removes the last element of the collection
+    ///     Removes the last element of the collection
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
@@ -618,7 +638,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Removes all elements matching the predicate
+    ///     Removes all elements matching the predicate
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
@@ -632,7 +652,7 @@ public static class Utility {
     }
 
     /// <summary>
-    /// Gets a random element from the list (linear distribution).
+    ///     Gets a random element from the list (linear distribution).
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="list"></param>
@@ -640,9 +660,14 @@ public static class Utility {
     public static T GetRandom<T>(this ICollection<T> list) {
         return list.ElementAt(Random.Range(0, list.Count));
     }
-
     #endregion
 
+    /// <summary>
+    ///     Returns the scale the original object needs to be scaled to to get the desired size of the object
+    /// </summary>
+    /// <param name="original"></param>
+    /// <param name="desired"></param>
+    /// <returns></returns>
     public static Vector3 GetScaleFromBounds(Bounds original, Bounds desired) {
         return desired.extents.Divide(original.extents);
     }

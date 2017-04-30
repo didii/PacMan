@@ -1,64 +1,94 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 
 public static class Mouse {
 
     #region Properties
-    // Returns current mouse coordinates in screen coordinates
+    /// <summary>
+    /// Returns current mouse coordinates in screen coordinates
+    /// </summary>
     static public Vector2 MouseScreenCoordinates {
         get { return Input.mousePosition; }
     }
     
-    // 
+    /// <summary>
+    /// Returns the amount of scrolls the mouse has done since the last update
+    /// </summary>
     static public Vector2 ScrollDelta {
         get { return Input.mouseScrollDelta; }
     }
     #endregion
 
     #region Methods
-    // Returns the position of the mouse in pixels
+    /// <summary>
+    /// Returns the position of the mouse in pixels
+    /// </summary>
+    /// <returns></returns>
     static public Vector2 GetMouseScreenCoordinates() {
         return MouseScreenCoordinates;
     }
 
-    // Returns the position of the mouse in world coordinates
+    /// <summary>
+    /// Returns the position of the mouse in world coordinates
+    /// </summary>
+    /// <param name="cam"></param>
+    /// <returns></returns>
     static public Vector3 GetMouseWorldCoordinates(Camera cam) {
         return cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
     }
 
-    // Returns true if button is currently held down
+    /// <summary>
+    /// Returns true if button is currently held down
+    /// </summary>
+    /// <param name="button"></param>
+    /// <returns></returns>
     static public bool IsButtonDown(KeyCode button) {
-        if (GetMouseButton(button) == -1)
-            throw new ArgumentException("Only KeyCode.Mouse# is accepted here", "button");
+        CheckKeyCodeForMouse(button);
         return Input.GetMouseButton(GetMouseButton(button));
     }
 
-    // Return true if button is currently not down
+    /// <summary>
+    /// Return true if button is currently not down
+    /// </summary>
+    /// <param name="button"></param>
+    /// <returns></returns>
     static public bool IsButtonUp(KeyCode button) {
-        if (GetMouseButton(button) == -1)
-            throw new ArgumentException("Only KeyCode.Mouse# is accepted here", "button");
+        CheckKeyCodeForMouse(button);
         return !IsButtonDown(button);
     }
 
-    // Returns true if the button was pressed this frame
+    /// <summary>
+    /// Returns true if the button was pressed this frame
+    /// </summary>
+    /// <param name="button"></param>
+    /// <returns></returns>
     static public bool IsButtonPressed(KeyCode button) {
-        if (GetMouseButton(button) == -1)
-            throw new ArgumentException("Only KeyCode.Mouse# is accepted here", "button");
+        CheckKeyCodeForMouse(button);
         return Input.GetMouseButtonDown(GetMouseButton(button));
     }
 
-    // Returns true if the button was released this frame
+    /// <summary>
+    /// Returns true if the button was released this frame
+    /// </summary>
+    /// <param name="button"></param>
+    /// <returns></returns>
     static public bool IsButtonReleased(KeyCode button) {
-        if (GetMouseButton(button) == -1)
-            throw new ArgumentException("Only KeyCode.Mouse# is accepted here", "button");
+        CheckKeyCodeForMouse(button);
         return Input.GetMouseButtonUp(GetMouseButton(button));
     }
     #endregion
 
     #region Helper methods
-    // Returns the number of the mouse button or -1 if not a mouse button
+    private static void CheckKeyCodeForMouse(KeyCode button) {
+        if (GetMouseButton(button) == -1)
+            throw new ArgumentException("Only KeyCode.Mouse# is accepted here", "button");
+    }
+
+    /// <summary>
+    /// Returns the number of the mouse button or -1 if not a mouse button
+    /// </summary>
+    /// <param name="button"></param>
+    /// <returns></returns>
     static private int GetMouseButton(KeyCode button) {
         switch (button) {
             case KeyCode.Mouse0:

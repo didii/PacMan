@@ -6,7 +6,9 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     #region Fields
-
+    /// <summary>
+    /// Distance to jump ahead
+    /// </summary>
     public float JumpDistance;
     public LevelInfo LevelInfo;
     public GameInfo GameInfo;
@@ -60,23 +62,26 @@ public class Player : MonoBehaviour {
         if (_moveQueue.CurrentDirection != Utility.EDirection4.None)
             _collidingNode = null;
     }
-
-    void LateFixedUpdate() {
-        Debug.Log("LateFixedUpdateCall: " + ++count);
-    }
     #endregion
 
     #region Events
-
+    /// <summary>
+    /// Triggers when the player enters a collision box
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy")
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); //destroy self if the collided object was an enemy
         if (other.tag == "Dot") {
-            Destroy(other.gameObject);
+            Destroy(other.gameObject); //destroy dot if it was a dot
             GameInfo.Score += 10;
         }
     }
 
+    /// <summary>
+    /// Action that is invoked whenever the player changes its direction
+    /// </summary>
+    /// <param name="dir"></param>
     void OnDirectionChange(Utility.EDirection4 dir) {
         var animator = GetComponent<Animator>();
         switch (dir) {
@@ -107,7 +112,10 @@ public class Player : MonoBehaviour {
     #endregion
 
     #region Methods
-
+    /// <summary>
+    /// What happens when the player reaches a <see cref="IntersectionNode"/>
+    /// </summary>
+    /// <param name="node"></param>
     public void OnNodeTrigger(IntersectionNode node) {
         // Check if next direction is allowed
         if (_moveQueue.NextDirection != Utility.EDirection4.None && node.IsAllowed(_moveQueue.NextDirection)) {
@@ -126,11 +134,17 @@ public class Player : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Unused
+    /// </summary>
     public void OnTeleportDissapear() {
         if (_jumpPos.HasValue)
             transform.position = _jumpPos.Value;
     }
 
+    /// <summary>
+    /// Unused
+    /// </summary>
     public void OnTeleportAnimationEnd() {
         _moveQueue.Resume();
         _jumpPos = null;
@@ -139,7 +153,10 @@ public class Player : MonoBehaviour {
     #endregion
 
     #region Helper Methods
-    
+    /// <summary>
+    /// Tried to implement a 'jump' function which does not (yet) work properly without glitching out
+    /// </summary>
+    /// <param name="dir"></param>
     private void Jump(Utility.EDirection4 dir) {
         // Check if jumping the distance does the job
         var endPos = (Vector2)transform.position + dir.ToVector2()*JumpDistance;

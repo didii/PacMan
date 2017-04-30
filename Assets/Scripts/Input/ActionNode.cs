@@ -1,52 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using UnityEngine;
-using UnityEngine.Experimental.Director;
 
+/// <summary>
+///     Abstract Action type. Allows to combine multiple keypresses in a single command
+/// </summary>
 abstract class ActionNode {
+    /// <summary>
+    ///     Is the current node active?
+    /// </summary>
+    /// <returns></returns>
     public abstract bool IsActive();
+
+    /// <summary>
+    ///     Forces a check to update the IsActive state
+    /// </summary>
     public abstract void ForceUpdate();
 }
 
+/// <summary>
+///     The default node. Allows for different action types and multiplier (double, triple etc. presses)
+/// </summary>
 class ActionNodeManager : ActionNode {
+    #region Fields
     private ActionNode _node;
+    #endregion
 
-    public ActionNodeManager(KeyCode key, Action.EActionType type =Action.EActionType.Hold, int multi =2) {
+    #region Constructor
+    public ActionNodeManager(KeyCode key, Action.EActionType type = Action.EActionType.Hold, int multi = 2) {
         // Create the correct ActionNode type depending on the EActionType given
         switch (type) {
-            case Action.EActionType.Hold:
-            case Action.EActionType.PressOnce:
-            case Action.EActionType.ReleaseOnce:
-                _node = new SimpleActionNode(key, type);
-                break;
-            case Action.EActionType.HoldTwice:
-            case Action.EActionType.MultiHold:
-                _node = new MultiHoldActionNode(key, multi);
-                break;
-            case Action.EActionType.PressTwice:
-            case Action.EActionType.MultiPress:
-                _node = new MultiPressActionNode(key, multi);
-                break;
-            case Action.EActionType.ReleaseTwice:
-            case Action.EActionType.MultiRelease:
-                _node = new MultiReleaseActionNode(key, multi);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException("type");
+        case Action.EActionType.Hold:
+        case Action.EActionType.PressOnce:
+        case Action.EActionType.ReleaseOnce:
+            _node = new SimpleActionNode(key, type);
+            break;
+        case Action.EActionType.HoldTwice:
+        case Action.EActionType.MultiHold:
+            _node = new MultiHoldActionNode(key, multi);
+            break;
+        case Action.EActionType.PressTwice:
+        case Action.EActionType.MultiPress:
+            _node = new MultiPressActionNode(key, multi);
+            break;
+        case Action.EActionType.ReleaseTwice:
+        case Action.EActionType.MultiRelease:
+            _node = new MultiReleaseActionNode(key, multi);
+            break;
+        default:
+            throw new ArgumentOutOfRangeException("type");
         }
     }
+    #endregion
 
+    #region Methods
     public override bool IsActive() {
         return _node.IsActive();
     }
 
-    public override void ForceUpdate() {}
+    public override void ForceUpdate() { }
+    #endregion
 
     #region Subclasses
+    /// <summary>
+    ///     Defines a single press/hold/release action
+    /// </summary>
     private class SimpleActionNode : ActionNode {
         private KeyCode _key;
         private Action.EActionType _type;
@@ -61,48 +79,78 @@ class ActionNodeManager : ActionNode {
 
         public override bool IsActive() {
             switch (_type) {
-                case Action.EActionType.Hold:
-                    return Keyboard.IsKeyDown(_key);
-                case Action.EActionType.PressOnce:
-                    return Keyboard.IsKeyPressed(_key);
-                case Action.EActionType.ReleaseOnce:
-                    return Keyboard.IsKeyReleased(_key);
-                default:
-                    throw new ArgumentOutOfRangeException();
+            case Action.EActionType.Hold:
+                return Keyboard.IsKeyDown(_key);
+            case Action.EActionType.PressOnce:
+                return Keyboard.IsKeyPressed(_key);
+            case Action.EActionType.ReleaseOnce:
+                return Keyboard.IsKeyReleased(_key);
+            default:
+                throw new ArgumentOutOfRangeException();
             }
         }
 
-        public override void ForceUpdate() {}
+        public override void ForceUpdate() { }
     }
 
+    /// <summary>
+    ///     Defines a multi-press action node (double, triple, etc. press). Abstract class
+    /// </summary>
     private abstract class MultiActionNode : ActionNode {
         #region Fields
-        protected KeyCode _key; // The key
-        protected int _multiTarget = 2; // Number of times key has to be pressed
-        protected int _multiCurrent = 0; // Current amount of presses
-        protected float _startTime = -1; // Time of first click
-        protected bool _isActive; // If IsActive() should return true
+        /// <summary>
+        ///     The key
+        /// </summary>
+        protected KeyCode _key;
 
-        private int _lastFrameUpdate; // Last frame IsActive() was called
+        /// <summary>
+        ///     Number of times key has to be pressed
+        /// </summary>
+        protected int _multiTarget;
+
+        /// <summary>
+        ///     Current amount of presses
+        /// </summary>
+        protected int _multiCurrent;
+
+        /// <summary>
+        ///     Time of first click (-1 is never)
+        /// </summary>
+        protected float _startTime = -1;
+
+        /// <summary>
+        ///     If IsActive() should return true
+        /// </summary>
+        protected bool _isActive;
+
+        /// <summary>
+        ///     Last frame that <see cref="IsActive"/> was called
+        /// </summary>
+        private int _lastFrameUpdate;
         #endregion
 
         #region Properties
-        // Time that have passed since the first click
+        /// <summary>
+        ///     Time that have passed since the first click
+        /// </summary>
         protected TimeSpan TimeSinceFirstClick {
             get { return TimeSpan.FromSeconds(Time.time - _startTime); }
         }
         #endregion
 
         #region Constructor
-        // Immediately set the key and target number of presses
-        public MultiActionNode(KeyCode key, int multiTarget =2) {
+        /// <summary>
+        ///     Immediately set the key and target number of presses
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="multiTarget"></param>
+        public MultiActionNode(KeyCode key, int multiTarget = 2) {
             _key = key;
             _multiTarget = multiTarget;
         }
         #endregion
 
         #region Methods
-        // If action is currently active
         public override bool IsActive() {
             if (_lastFrameUpdate != Time.frameCount) {
                 Update();
@@ -115,7 +163,9 @@ class ActionNodeManager : ActionNode {
             Update();
         }
 
-        // Update the _isActive state, is called once per frame
+        /// <summary>
+        ///     Update the <see cref="IsActive"/> state, is called once per frame
+        /// </summary>
         protected void Update() {
             // Reset if timer has passed
             if (_startTime < 0 || TimeSinceFirstClick > Action.MultiDelayTime.Multiply(_multiTarget))
@@ -132,17 +182,28 @@ class ActionNodeManager : ActionNode {
             LateUpdateFrame();
         }
 
-        // Do every frame (before Next())
-        protected virtual void UpdateFrame() {}
-        // Do when the key is pressed
+        /// <summary>
+        ///     Do every frame (before <see cref="Next"/>)
+        /// </summary>
+        protected virtual void UpdateFrame() { }
+
+        /// <summary>
+        ///     Do when the key is pressed
+        /// </summary>
         protected virtual void Next() {
             if (_multiCurrent == 0)
                 _startTime = Time.time;
             _multiCurrent++;
         }
-        // Do every frame (after Next())
-        protected virtual void LateUpdateFrame() {}
-        // Do if timer has passed (before anything else)
+
+        /// <summary>
+        ///     Do every frame (after <see cref="Next"/>)
+        /// </summary>
+        protected virtual void LateUpdateFrame() { }
+
+        /// <summary>
+        ///     Do if timer has passed (before anything else)
+        /// </summary>
         protected virtual void Reset() {
             _startTime = -1;
             _multiCurrent = 0;
@@ -150,10 +211,18 @@ class ActionNodeManager : ActionNode {
         #endregion
     }
 
+    /// <summary>
+    ///     Multi-press, then hold. Stays active until the user releases the button
+    /// </summary>
     private class MultiHoldActionNode : MultiActionNode {
-
-        public MultiHoldActionNode(KeyCode key, int multiTarget)
-            : base(key, multiTarget) {}
+        #region Constructor
+        /// <summary>
+        ///     Immediately set the key and target number of presses
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="multiTarget"></param>
+        public MultiHoldActionNode(KeyCode key, int multiTarget) : base(key, multiTarget) { }
+        #endregion
 
         #region Methods
         protected override void Next() {
@@ -170,14 +239,15 @@ class ActionNodeManager : ActionNode {
         #endregion
     }
 
+    /// <summary>
+    ///     Multi-press. Is active in the frame that the user pressed the button x-times.
+    /// </summary>
     private class MultiPressActionNode : MultiActionNode {
         private int _frameActive;
 
-        public MultiPressActionNode(KeyCode key, int multiTarget)
-            : base(key, multiTarget) {}
+        public MultiPressActionNode(KeyCode key, int multiTarget) : base(key, multiTarget) { }
 
         #region Methods
-
         protected override void UpdateFrame() {
             base.UpdateFrame();
             _isActive = false;
@@ -200,12 +270,14 @@ class ActionNodeManager : ActionNode {
         #endregion
     }
 
+    /// <summary>
+    ///     Multi-press, then release. Is active in the frame that the user released the button x-times.
+    /// </summary>
     private class MultiReleaseActionNode : MultiActionNode {
         private bool _isHolding;
         private int _frameActive;
 
-        public MultiReleaseActionNode(KeyCode key, int multiTarget)
-            : base(key, multiTarget) {}
+        public MultiReleaseActionNode(KeyCode key, int multiTarget) : base(key, multiTarget) { }
 
         #region Methods
         protected override void Next() {
@@ -231,7 +303,9 @@ class ActionNodeManager : ActionNode {
     #endregion
 }
 
-
+/// <summary>
+///     Chains two actions that both need to be active
+/// </summary>
 class AndActionNode : ActionNode {
     private ActionNode _lhs, _rhs;
 
@@ -244,9 +318,12 @@ class AndActionNode : ActionNode {
         return _lhs.IsActive() && _rhs.IsActive();
     }
 
-    public override void ForceUpdate() {}
+    public override void ForceUpdate() { }
 }
 
+/// <summary>
+///     Chains two actions where one of the two needs to be active
+/// </summary>
 class OrActionNode : ActionNode {
     private ActionNode _lhs, _rhs;
 
@@ -258,9 +335,13 @@ class OrActionNode : ActionNode {
     public override bool IsActive() {
         return _lhs.IsActive() || _rhs.IsActive();
     }
-    public override void ForceUpdate() {}
+
+    public override void ForceUpdate() { }
 }
 
+/// <summary>
+///     Inverts an action
+/// </summary>
 class NotActionNode : ActionNode {
     private ActionNode _node;
 
@@ -271,5 +352,6 @@ class NotActionNode : ActionNode {
     public override bool IsActive() {
         return !_node.IsActive();
     }
-    public override void ForceUpdate() {}
+
+    public override void ForceUpdate() { }
 }

@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Queue a single movement with some extra functionality.
+/// Queues a single movement with some extra functionality. Used for player movement.
 /// </summary>
 /// <remarks>Needs a <see cref="Rigidbody2D"/> attached to the <see cref="GameObject"/>. It updates
 /// the velocity of it automatically.</remarks>
@@ -15,10 +15,11 @@ public class MoveQueue : MonoBehaviour {
     /// <summary> If set to true, the opposite direction is not blocked.</summary>
     public bool AllowReverse = true;
 
-
+    /// <summary>
+    /// Invoked whenever the direction was changed
+    /// </summary>
     public event Action<Utility.EDirection4> DirectionChanged;
 
-    /// <summary></summary>
     private Utility.EDirection4 _currDirection = Utility.EDirection4.None;
     private Utility.EDirection4 _nextDirection = Utility.EDirection4.None;
     private Utility.EDirection4[] _allowedDirections = null;
@@ -27,7 +28,9 @@ public class MoveQueue : MonoBehaviour {
     #endregion
 
     #region Properties
-
+    /// <summary>
+    /// Pauzes movement
+    /// </summary>
     public bool Pauzed {
         get { return _allowedDirections != null; }
     }
@@ -115,14 +118,12 @@ public class MoveQueue : MonoBehaviour {
 
     #region Initialisation Methods
 
-    // Use this for initialization
+    /// <summary>
+    /// Use this for initialization
+    /// </summary>
     void Start() {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
-
-    #endregion
-
-    #region Events
 
     #endregion
 

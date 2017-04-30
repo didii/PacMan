@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Allows for a LateFixedUpdate call on every Monobehavior which technically doesn't exist.
@@ -14,8 +13,7 @@ using System.Collections;
 /// GameController. This will now broadcast a message to all GameObjects in the scene, triggering
 /// the function LateFixedUpdate(). Simply implement this function on any MonoBehaviour to trigger
 /// it.</para>
-/// 
-/// It does not seem to matter if you add multiple for some reason...</remarks>
+/// </remarks>
 public class LateFixedUpdateHack : MonoBehaviour {
 
     private static bool _fixedUpdate;

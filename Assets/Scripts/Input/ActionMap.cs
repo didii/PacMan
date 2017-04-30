@@ -1,35 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Collections.Generic;
 
+/// <summary>
+/// Maps a key of type <see cref="T"/> with an action of type <see cref="Action"/>
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class ActionMap<T> {
 
     #region Fields
-
-    private Dictionary<T, Action> _dictionary;
-    #endregion
-
-    #region Properties
-    public ActionMap() {
-        _dictionary = new Dictionary<T, Action>();
-    }
-    #endregion
-
-    #region Constructor
-
+    /// <summary>
+    /// The dictionary holding the keys and actions.
+    /// </summary>
+    private readonly Dictionary<T, Action> _dictionary = new Dictionary<T, Action>();
     #endregion
 
     #region Methods
-    // alternative of operator[]
+    /// <summary>
+    /// Alternative to operator[]
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <returns></returns>
     public bool IsActive(T ID) {
         return this[ID].IsActive();
     }
     #endregion
 
     #region Operators
-    // operator[] to access dictionary
+    /// <summary>
+    /// Operator[] to access dictionary. Automatically adds the key-value pair to the dictionary if not yet present.
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <returns></returns>
     public Action this[T ID] {
         get {
             return _dictionary.ContainsKey(ID) ? _dictionary[ID] : null;
